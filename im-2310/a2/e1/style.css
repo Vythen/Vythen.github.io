@@ -1,0 +1,157 @@
+*{
+    boxing-sizing: border-box;
+}   
+
+/* For the root RGB variables have been used so that I can accurately define the 
+colours of the panel, rather than relying on the base colours. In defining the colours for 
+my page, I based them utilising this chart: https://qph.cf2.quoracdn.net/main-qimg-f4da65f2b44826cbfa7dea2f809ea3ca-lq
+to define the emotions the characters are expressing towards one another. In doing so, the user
+can interpret the panels meaning through colour, before engaging with the hover function to 
+discover what panel is being conveyed. A black border variable was implimented so that each of the panels
+can have greater emphasis to make them stand out on the page.  */ 
+
+:root   { 
+    --grid-colour-one: rgb(216, 52, 52);
+    --grid-colour-two: rgb(13, 74, 143);
+    --grid-colour-three: rgb(216, 162, 62);
+    --grid-colour-four: rgb(127, 246, 255);
+    --grid-colour-five: rgb(61, 158, 37);
+    --grid-colour-six: rgb(204, 207, 8);
+    --grid-colour-seven: rgb(139, 55, 165);
+    --border-adjustment: solid 6px rgb(0, 0, 0);
+}
+
+/* The grid has been laid out with a 5x7 layout in order to appropriately map out the panels.
+Rather than opting for a 5x8 layout, the 5x7 allows the grid to fit accurately, by allowing the
+bottom pannel to fill up the bottom of the page in refrence to the original layout sizing. 
+The spacing for the column and rows has also been similarly replicated to emulate the feel of the original
+panels layout. Grey was chosen for the background colour, as it provides a seamless transition into the manga
+panels, and provides a relaxed, monotone feel to the page, that brings greater emphasis on the colours that are
+on display.*/
+
+#grid-table     {
+
+    width: 100vw;
+    height: 360vh;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 14px;
+    row-gap: 32px;
+    background-color: rgb(90, 90, 90);
+}
+
+.grid-1 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-one);
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+}
+
+.grid-2 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-two);
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.grid-3 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-three);
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.grid-4 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-four);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 6;
+
+}
+
+.grid-5 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-five);
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+
+.grid-6 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-six);
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+
+.grid-7 {
+    border: var(--border-adjustment);
+    background-color: var(--grid-colour-seven);
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 6;
+    grid-row-end: 8;
+}
+
+.grid-1:hover {
+    background-image: url('img/Akira Vol 1 - page 167 first panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid-2:hover {
+    background-image: url('img/Akira Vol 1 - page 167 second panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.grid-3:hover {
+    background-image: url('img/Akira Vol 1 - page 167 third panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid-4:hover {
+    background-image: url('img/Akira Vol 1 - page 167 fourth panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid-5:hover {
+    background-image: url('img/Akira Vol 1 - page 167 fifth panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid-6:hover {
+    background-image: url('img/Akira Vol 1 - page 167 sixth panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.grid-7:hover {
+    background-image: url('img/Akira Vol 1 - page 167 seventh panel.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
