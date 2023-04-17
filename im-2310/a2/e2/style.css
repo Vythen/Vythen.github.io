@@ -1,0 +1,204 @@
+*{
+  box-sizing: border-box;
+  background-origin: border-box;
+  margin: 0;
+}
+
+/* Basis for colour palette comes from 1bit Monitor Glow Palette by Polyducks */
+/* https://lospec.com/palette-list/1bit-monitor-glow */
+/* I have made slight adjustments to the purple and green to provide greater readability across the page. 
+I found the base colour pallet both appropriate, and adaptable to create a clean, minimalist look. 
+Additionally, I have added my own variables so that I can comfortably make broader page adjustments from the root
+without needing to repeat the code as I experimented with adjustments across the page. The custom fonts have backup
+text incase the base font breaks due to browser incompatability.*/
+:root{
+  --col-01:#222323;
+  --col-02:#f0f6f0;
+  --col-03:#7878d3;
+  --col-04:#90c74c;
+  --border: 1px solid var(--col-02);
+  --ff-primary: 'Source Sans Pro', sans-serif;
+  --ff-secondary: 'Source Code Pro', monospace;
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-selec: 1.5rem;
+  --fs-body: 1rem;
+  text-align: center;
+
+}
+
+/* The media adjustments keep the page feeling readable on mobile devices */
+
+@media (min-width: 800px) {
+  :root {
+      --fs-h1: 4.5rem;
+      --fs-h2: 3.75rem;
+      --fs-selec: 1.5rem;
+      --fs-body: 1.125rem;
+  }
+}
+
+/* Underneath are various styling choices made to create a cleaner, more
+readable version of the original webpage. The layout has been centered to 
+provide a more engaging and centralised focus on the recipes. Which allows
+for a smoother transition to the recipe webpages. The selection has been
+established at the top of the page to ensure the user immediately engages
+with the filter so that they can find what they want. Hover and cursor features
+have been added to clarify the interactive elements that the user can engage with.*/
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+h1,
+h2 {
+    line-height: 1.75;
+    margin: 0;
+    font-family: var(--ff-primary);
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--col-01);
+  color: var(--col-02);
+  padding: 2vw;
+  font-family: var(--ff-secondary);
+  font-size: var(--fs-body);
+
+}
+
+a {
+  color: var(--col-03);
+}
+
+a:hover {
+  color: var(--col-04);
+}
+
+.RecipeBox{
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+  font-family: var(--ff-secondary);
+
+}
+
+.FilterSection{
+  line-height: 1.75;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-selec);
+  padding-bottom: 1.75rem;
+
+}
+
+.FilterBox{
+  flex-direction: column;
+}
+
+.FilterBox:hover{
+color: var(--col-03);
+cursor: pointer;
+
+}
+
+.FilterButton{
+  font-family: var(--ff-primary);
+  font-size: 1.25rem;
+  color: var(--col-02);
+  background-color: transparent;
+
+}
+
+.FilterButton:hover{
+color: var(--col-04);
+cursor: pointer;
+
+}
+
+/*
+  Padding has been provided across the board to ensure readabilty for each recipe. 
+  Additionally, styling has been provided for the images to ensure the user can
+  successfully understand that they can interact with it. Thus ensuring viewing of 
+  the recipe link without an intrusive url link being provided.
+*/
+
+
+.RecipeName{
+  font-size: 1.5rem;
+  padding-top: 0.75rem;
+}
+
+.Author{
+  font-size: 1.3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Attribution{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.RecipeImg{
+  display: inline;
+  max-width: 100%;
+  transition: 
+  transform 750ms cubic-bezier(.5, 0, .5, 1),
+  opacity 250ms linear;
+}
+
+.RecipeImg:focus {
+  position: relative;
+  z-index: 2;
+
+}
+
+.RecipeImg:focus, .RecipeImg:hover {
+  transform: scale(1.01);
+  opacity: .5;
+}
+
+.Cuisine{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.TimeToCook{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.SkillLevel{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.Course{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.Servings{
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.Dietary{
+  padding-top: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
