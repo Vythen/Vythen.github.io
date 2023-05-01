@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 
-<html lang="en"> 
-        <head>
+<!-- 
 
-            <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  PROVIDE MEANINGFUL FEEDBACK TO THE FOLLOWING ELEMENTS:
+  1) <button> with the id of load-link on the loading page (index.html)
+  2) <div> with the id of load-throbber on the loading page (index.html)
+  3) <li> inside of the <ol> inside of the <nav> on the information page (hosono.html)
+  4) <button> with the id of mode-button on the information page (hosono.html)
+  5) switchModes() function - hint you can add a transition CSS property to the <body> and it will be inherited 
+     by all the elements inside, so when custom CSS variables are changed it will apply transition
 
+-->
 
-            <link rel="stylesheet" href="style.css">
+<html lang="en">
 
-            <script src="script.js"></script>
+  <head>
 
-        </head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <body>
-            
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-            <h1>This is my boilerplate</h1>
+    <title>Loading Page</title>
 
+    <script src="./fakeLoad.js" defer></script>
 
-        </body>
+  </head>
+
+  <body id="load-body">
+      <h1>Haruomi Hosono</h1>
+
+      <button id="load-link" onclick="loadPageAfterDelay(10000, './hosono.html')"><strong>Click to Load Page</strong></button>
+
+      <div id="load-throbber"></div>
+
+  </body>
 
 </html>

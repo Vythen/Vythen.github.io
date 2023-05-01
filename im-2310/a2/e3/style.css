@@ -1,0 +1,248 @@
+*{
+  box-sizing: border-box;
+  background-origin: border-box;
+  margin: 0;
+}
+
+:root{
+  /* first two colours come from Kuroi's Manga Pallete Palette */
+  /* https://lospec.com/palette-list/manga-pallete */
+  --col-01:#171219;
+  --col-02:#f2fbeb;
+  --col-03:#5252ff;
+  --col-04:#b6e878;
+  font-size: 16px;
+  /* I chose to retain the scroll behaviour as smooth, as I found that it made navigating the experience to feel more intuitive,
+    and comfortable to navigate. I especially feel that in creating a readable experience, having a smoother scroll movement 
+    helps with readability, and the general flow of navigation. */
+  scroll-behavior: smooth;
+}
+
+/* For the body I chose to use a brief ease-in transition in order to emphasise the state changes across the page. I experimented with 
+  adding opacity, and animations for the body loading in, however I found it to take away from the pages purpose, making it lean more into absurdist
+  rather than a page designed for information. */
+body{
+  padding: 1rem;
+  background-color: var(--col-02);
+  color: var(--col-01);
+  transition: ease-in 0.5s;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav li{
+  font-size: 1rem;
+}
+
+section{
+  margin-bottom: 2rem;
+}
+
+/* For the H1's across both pages, I wanted to create a bolder, and clearer statement about the individual that the page is dedicated to. 
+  I felt that this would be best accomplished by utilising an animated GIF from Haruomi Hosono as the background for the text, which was achieved by specifying
+  that the background of the text is the GIF that is referenced below, and turning the color of the text to transparent. I found that in changing the 
+  H1 with said GIF, that it would also allow both H1's across the HTML documents to embody different parts of the GIF due to the position of the image
+  in the background. Making the page feel more lively, while allowing the H1 to feel consistent across light mode and dark mode.*/
+
+h1{
+  font-size: 3rem;
+  background-image: url(https://media.tenor.com/3mLwGP6WLm4AAAAd/haruomi-hosono.gif);
+  background-size: cover;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  text-transform: uppercase;
+}
+
+/*I decided to stylise the H2 with an animation to slide into the page to make the user feel further engaged with the loading process. 
+  I found that an animation that draws the users focus to the topics coming into the page would feel intuitive, and attention grabbing,
+  while ensuring that the user doesn't feel frustrated waiting for any further loading due to the lengthy loading process from the 
+  title page.*/
+h2{
+  font-size: 2rem;
+  animation-name:slide;
+  animation-duration: 2s;
+}
+
+@keyframes slide {
+  from  {
+    margin-left: 100%;
+}
+
+to {
+  margin-left: 0%;
+}
+
+}
+
+p{
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+figcaption{
+  width: fit-content;
+}
+
+dl ul{
+  margin-bottom: 0;
+}
+
+li{
+  font-size: 1rem;
+}
+
+dd{
+  padding-left: 60px;
+}
+
+li ul{
+  padding-left: 40px;
+}
+
+.img-wrapper{
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.img-figure{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article-img{
+  width: 80%;
+}
+
+.res-columns{
+  column-width: 25rem;
+}
+
+#mode-button{
+  float: right;
+  /* note the use of position: sticky to keep the button on the page even with scrolling */
+  position: sticky;
+  top: 1rem;
+}
+
+/*For the mode button I wanted the feedback to be simple, and share similar language to the rest of the interactions
+  in the experience. However, I found that utilising the aqua colour that was used for the list created readability problems
+  when navigating the light mode experience, with a similar problem when trying to use opacity adjustments as feedback. 
+  I also tested an ease-in, ease-out, and found that it felt less responsive when compared to the scale adjustment. 
+  In using the transform:scale, it would allow me to also retain the page consistency with the title.*/
+
+#mode-button:hover{
+  cursor: pointer;
+  color:rgb(128, 145, 145);
+  transform: scale(1.05)
+}
+
+#load-body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color:var(--col-01);
+}
+
+/*In thinking about creating a straightforward navigational experience, I decided to enlarge the font for the load
+  link function, allowing the user to immediately recognise that there's more to the experience, and for greater 
+  opportunity for them to engage with the hover adjustments so that they can get to the content faster. */
+
+#load-link{
+  line-height: 1rem;
+  background-color: transparent;
+  border: 0;
+  font-size: 30px;
+}
+
+/*For the load link feedback, I wanted it to be instant, and satisfying. By utilising the scale, especially on a larger
+  font size, the user can get a greater sense of impact as they mouse over the link. I wanted to also avoid creating a 
+  'url' feel for the loading process, as I wanted the loading process to feel like a natural progression of the page, 
+  rather than an entirely seperate website. */
+
+#load-link:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  opacity: .5;
+}
+
+/*Developing the navigation feedback was a straightforward process. Similar to the hover function for the load link, I wanted
+  the user to get a greater sense of impact as they mouse over the list. In the feedback, I also wanted to make sure that 
+  all aspects of the list were appropriately covered with the same type of feedback. I also wanted to ensure that the 'url' feel, was distinct
+  from the url's featured in the document, so I felt utilising an aqua colour would be most appropriate. An underline decoration 
+  was also added, rather than using a scale in order to tell the user that the interaction with this part of the webpage will function
+  differently compared to the dark mode/light mode button */
+
+nav ol li a:hover {
+  color: aqua;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Developing the feel of the loading experience was definitely the most challenging part of this task. I experimented with different
+   approaches, such as a progress bar gradually loading, and animating individual letters of the word 'loading' through keyframing each
+   individual letter and utilising 'span' in html. I ultimately felt that the most compelling, and appropriate function was through creating
+   a rotating circle, while buffering it at 30%, so that it could feel like the page was constantly loading. To help this, I also tested it at different speeds
+   to ensure I could get the best feel for loading, while keeping in mind to prevent the feeling of frustration from slow progress. I found a repeating 
+   loop of 400ms, with the rotation of 45deg at 30% served as an engaging reward for the users click, while providing appropriate feedback for the loading state. */
+
+#load-throbber{
+  border-top-color: #000000;
+  border-left-color: #000000;
+  border-bottom: 16px solid #000000;  
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  width: 2.5rem;
+  height: 2.5rem;
+  animation: spin 400ms linear infinite;
+  display: none;
+  transition: ease-in-out;
+}
+
+@keyframes spin{
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(45deg); }
+  100% {transform: rotate(360deg);}
+}
+/* Media Queries */
+
+/* medium devices 600 - 992 */
+@media only screen and (min-width: 600px) {
+  :root{
+    font-size: 20px;
+  }
+  
+  .img-wrapper{
+    width: 75%;
+    margin: 1.5rem auto;
+  }
+
+}
+
+/* medium devices 992 + */
+@media only screen and (min-width: 992px) {
+  :root{
+    font-size: 24px;
+  }
+
+  .img-wrapper{
+    max-width: fit-content;
+    float: right;
+    margin: 1.5rem;
+  }
+
+}
+
+@media (prefers-reduced-motion) {
+  :root{
+    scroll-behavior: auto;
+  }
+}
