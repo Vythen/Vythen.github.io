@@ -1,140 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 *{
-  box-sizing: border-box;
-  background-origin: border-box;
   margin: 0;
-  padding: 0; 
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* I attempted to experiment with some margin and padding adjustments. Ultimately I felt leaving the padding
-   at 0 could leave the video in a comfortable center point. Leaving the code in provides a safety net in the future
-   in case adjustments to the website in the future need to be made */
-
-/* Basis for colour palette comes from 1bit Monitor Glow Palette by Polyducks */
-/* https://lospec.com/palette-list/1bit-monitor-glow */
-/* you're welcome to change the colours if you want or any of the other general page style */
-:root{
-  --col-01:#222323;
-  --col-02:#f0f6f0;
-  --col-03:#5252ff;
-  --col-04:#b6e878;
-  --col-05:#bcbdbc;
-  --col-06:#6f6f6f;
-  --border: 1px solid var(--col-02);
-}
-
-
-/* Some body adjustments have been made to help ensure stability for experimentation with alignment, and future feature adjustments */
+/* For the background colour I wanted to go with a cinematic and impactful feel. 
+   Taking into consideration that the video is filled with music and flashy visuals, this naturally  
+   led me into my love for cinema, in an attempt to mimick the aspect ratio of action movies.
+   Through experimentation, I found that black was the most impactful choice.*/
 body{
+  min-height: 100vh;
+  background: #000000;
+}
+
+body, .container, .video-controls, .video-timer, .options{
   display: flex;
   align-items: center;
-  background: var(--col-02);
-}
-
-.video-player-wrapper{
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  margin: 0 auto;
-}
-
-/* becuase I want to overlay the play icon on the video they need to be in their own wrapper */
-
-/*I made adjustments to the video element wrapper to provide more immediate customisability over the user interface for the video player.
-   */
-  The 
-.video-element-wrapper{
-  max-width: 900px;
-  width: 90%;
-  overflow: hidden;
-  background: (var(--col-01));
-  border-radius: 5px;
-  position: relative;
-}
-
-
-#videoElement{
-  width: 100%;
-  grid-column: 1/2;
-  grid-row: 1/2;
-}
-
-#videoPlayOverlay{
-  width: 8rem;
-  height: 8rem;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  justify-self: center;
-  align-self: center;
-  opacity: 0.6;
-  display: none;
-}
-
-.video-controls-wrapper{
-  display: flex;
   justify-content: center;
 }
-/* this overwrites the above display:flex - something which is then undone when the JS loads */
-#controlsWrapper{
+
+/* For the video, I decided to make the width cover up the vast majority of the screen. Due to the video 
+   lacking a fullscreen function, and the only purpose of the webpage being to participate in the viewing 
+   experience, I felt that providng a large experience would make it more impactful. This, alongside the F11 
+   fullscreen function, would allow the viewer to fully immerse themselves.*/
+.container{
+  width: 98%;
+  user-select: none;
+  overflow: hidden;
+  max-width: 98%;
+  border-radius: 5px;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.container.fullscreen{
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0px;
+}
+
+.wrapper{
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  bottom: -15px;
+  transition: all 0.08s ease;
+}
+
+.container.show-controls .wrapper{
+  opacity: 1;
+  bottom: 0;
+  transition: all 0.13s ease;
+}
+
+.wrapper::before{
+  content: "";
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: calc(100% + 35px);
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.video-timeline{
+  height: 7px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.video-timeline .progress-area{
+  height: 3px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.progress-area span{
+  position: absolute;
+  left: 50%;
+  top: -25px;
+  font-size: 13px;
+  color: #fff;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+/* For the progress bar, I wanted the colour to continue to be readable to ensure a
+   smooth user experience while navigating. Taking into consideration the visuals being
+   primarily pink focused, I felt that an aqua colour would serve as a clear contrast, 
+   while making sure to dim the tones so that the progress bar was not intrusive to the 
+   viewing experience */
+.progress-area .progress-bar{
+  width: 0%;
+  height: 100%;
+  position: relative;
+  background: #398699;
+}
+
+.progress-bar::before{
+  content: "";
+  right: 0;
+  top: 50%;
+  height: 13px;
+  width: 13px;
+  position: absolute;
+  border-radius: 50%;
+  background: #58b1d4;
+  transform: translateY(-50%);
+}
+
+.progress-bar::before, .progress-area span{
   display: none;
 }
 
-.video-control-button{
-  width: 2rem;
-  height: 2rem;
-  padding: .1rem;
+.video-timeline:hover .progress-bar::before,
+.video-timeline:hover .progress-area span{
+  display: block;
+}
+
+.wrapper .video-controls{
+  padding: 5px 20px 10px;
+}
+
+.video-controls .options{
+  width: 100%;
+}
+
+.video-controls .options:first-child{
+  justify-content: flex-start;
+}
+
+.video-controls .options:last-child{
+  justify-content: flex-end;
+}
+
+.options button{
+  height: 40px;
+  width: 40px;
+  font-size: 19px;
   border: none;
   cursor: pointer;
-}
-.video-control-button:hover{
-  background-color: var(--col-05);
-}
-.video-control-button:active{
-  background-color: var(--col-06);
-}
-.button-icon{
-  pointer-events: none;
+  background: none;
+  color: #efefef;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
-#playButton{
-  background-image: url('./icons/play.svg');
+.options button :where(i, span) {
+  height: 100%;
+  width: 100%;
+  line-height: 40px;
 }
 
-#muteButton{
-  background-image: url('./icons/mute.svg');
+/* For the hover function I wanted to create meaningful, yet subtle impact.
+   One of the most important parts of my aesthetic choices was to ensure 
+   a more cinematic feel, and a sense of immersion while interacting with the
+   video. By providing a dim effect rather than a glow up, it will allow the
+   users attention to be focused on the video rather than through fidgeting with
+   the buttons */
+.options button:hover :where(i, span){
+  color: #a8a3a3;
 }
 
-.video-progress-bar{
-  /* Reset the default appearance */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  height: 2rem;
-  flex-grow: 1;
-  cursor: pointer;
-  background-color: var(--col-01);
-  box-shadow: 0 1px 2px var(--col-02) inset;
-}
-::-moz-progress-bar {
-  background-color: var(--col-02);
+.options button:active :where(i, span){
+  transform: scale(0.9);
 }
 
-::-webkit-progress-bar {
-  background-color: var(--col-01);
-  box-shadow: 0 1px 2px var(--col-02) inset;
-}
-::-webkit-progress-value {
-  background-color: var(--col-02);
+.options button span{
+  font-size: 23px;
 }
 
-.timeline-loading{
-  background-image: -moz-repeating-linear-gradient(45deg, var(--col-03) 0% 2%, transparent 2% 4%, red 4%);
-  background-size: 200% 100%;
-  animation: loadingAnimation 4s linear infinite;
+.options input{
+  height: 4px;
+  margin-left: 3px;
+  max-width: 75px;
+  accent-color: #58b1d4;
 }
 
-@keyframes loadingAnimation {
-  100%{
-    background-position: 50% 0%;
+.options .video-timer{
+  color: #efefef;
+  margin-left: 15px;
+  font-size: 14px;
+}
+
+.video-timer .separator{
+  margin: 0 5px;
+  font-size: 16px;
+  font-family: "Open sans";
+}
+
+@media screen and (max-width: 540px) {
+  .wrapper .video-controls{
+    padding: 3px 10px 7px;
+  }
+
+  .progress-area span{
+    display: none!important;
+  }
+
+  .options .video-timer{
+    margin-left: 5px;
+  }
+
+  .video-timer .separator{
+    font-size: 14px;
+    margin: 0 2px;
+  }
+
+  .options .video-timer, .progress-area span, li{
+    font-size: 12px;
   }
 }

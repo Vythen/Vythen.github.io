@@ -1,6 +1,12 @@
 <!DOCTYPE html>
+<!-- This excercise was built off the "Build A Custom Video Player in HTML CSS & JavaScript | Custom Video Player in JavaScript"
+     tutorial that was developed by CodingNepal: https://www.youtube.com/watch?v=-r9TTW0D3t4 -->
+
 
 <html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <head>
 
@@ -11,35 +17,39 @@
 
   </head>
 
+  <!-- For the code, we undertook a significant overhaul. As I was experimenting with the originally provided code, I found 
+       frequent challenges in making the accurate time being depicted clealy balance out with the progress bar. This lead to 
+       me reading several online tutorials to see if I could develop a better solution that would be far more aesthetically 
+       pleasing than the original layout. I wanted to keep in-tact all the original buttons, while providing room for future 
+       features that could be added. An example of this is in the options right list, which serves to also assist in providing
+       breathing room for the left and center lists of the video player.-->
   <body>
-
-    <!-- this element holds all of the media player -->
-    <div class="video-player-wrapper">
-      <!-- this element holds the video element and the overlay -->
-      <div class="video-element-wrapper">
-
-        <video id="videoElement" controls>
-          <source src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4" type="video/mp4">
-        </video>
-
-        <img id="videoPlayOverlay" src="./icons/play.svg">
-
+    <div class="container show-controls">
+      <div class="wrapper">
+        <div class="video-timeline">
+          <div class="progress-area">
+          <span>00:00</span>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+        <ul class="video-controls">
+          <li class="options left">
+            <button class="volume"><i class="fa-solid fa-volume-high"></i></button>
+            <div class="video-timer">
+            <p class="current-time">00:00</p>
+            <p class="separator"> / </p>
+            <p class="video-duration">00:00</p>
+            </div>
+          </li>
+          <li class="options center">
+            <button class="play-pause"><i class="fas fa-play"></i></button>
+          </li>
+          <li class="options right">
+          </li>
+        </ul>
       </div>
-      <!-- this element holds all of the custom controls -->
-      <div class="video-controls-wrapper" id="controlsWrapper">
-
-        <button class="video-control-button" id="playButton"></button>
-
-        <button class="video-control-button" id="muteButton"></button>
-
-        <progress class="video-progress-bar" id="progressBar" value="0"></progress>
-
-        <p id="output"> </p>
-
-      </div>
-
+    <video src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"></video>
     </div>
-
-  </body>
-
+    <script src="playerControls.js"></script>
+    </body>
 </html>
