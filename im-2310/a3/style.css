@@ -1,0 +1,42 @@
+/* For this project I wanted to really capture the colstrophobic feeling of horror media. I felt that the best way to
+   achieve this would be through a narrow perspective of view which I visually mapped out for my presentation. 
+   in developing a tight perspective, the project could feel more immersive, and provide the opportunity for the flickering
+   effect to feel akin to old televisions having signal problems. I intended to put an aspect ratio to the screen, which is achieved
+   through the combination of the body and #black-border.*/
+body {
+    background-color: black;
+    margin: 0;
+    overflow: hidden; 
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#black-border {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* With the #content, it was important for the text to maintain the clarity, and feel cinematic. To achieve this I wanted to provide 
+   a clear background for which the user could view the text. It was also important that the user maintained the sense of agency with
+   the project, so the overflow was hidden across the rest of the page and enabled specifically here so the users attention would remain
+   at a fixed point on the page. I had experimented with using dark grey, but found that it blended in too much with the background. 
+   Brighter RGB colours made the experience feel less immersive, and using a bright white made the experience less cohesive compared to a lighter grey
+   due to the high levels of contrast against the black background.*/
+#content {
+    width: 80%;
+    max-height: 80vh; 
+    margin: 0 auto;
+    background-color: rgb(184, 183, 183);
+    padding: 20px;
+    color: black;
+    overflow-y: scroll;
+}
